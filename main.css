@@ -1,0 +1,54 @@
+@import url('https://fonts.googleapis.com/css2?family=Mochiy+Pop+One&display=swap');
+* {
+    box-sizing: border-box;
+    padding: 0;
+    margin: 0;
+    font-family: 'Mochiy Pop One', sans-serif;
+}
+
+body {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    min-height: 100vh;
+    background: #252839;
+}
+
+ul {
+    position: relative;
+    display: flex;
+    flex-direction: column;
+    gap: 30px;/*yazılar arasındaki alt alta olan boşluk*/
+}
+
+ul li {
+    position:relative;
+    list-style: none;
+}
+
+ul li a {
+    position:relative;
+    font-size: 4em;
+    text-decoration: none;
+    letter-spacing: 2px;
+    line-height: 1em;
+    text-transform: uppercase;
+    color: transparent;/*yazıların başta görünmez yapıyor*/
+    -webkit-text-stroke: 1px rgba(255, 255, 255, 0.5);/*görünmez olan yazıları sadece dışındaki izleri ile geri getiriyor*/
+}
+
+ul li a::before {/*link taglerinin solundan başlamasını sağlıyor*/
+    content: attr( data-text);/*datatext olarak tanımlanan yazıyı getiriyor*/
+    position: absolute;
+    color: var(--clr);/*yazıların içini renkli dolduruyor*/
+    width: 0;
+    overflow:hidden;/*yazı açıldığında içi renkli oluyor başta içleri boş */
+    transition: 1s;
+    border-right: 8px solid var(--clr);/*yazıların solundaki renkli çizgiler*/
+    -webkit-text-stroke: 1px var(--clr);/*textin etrafındaki beyaz yazı izlerini siliyor*/
+}
+
+ul li a:hover::before {/*sadece hover olursa animasyon gerçekleşmiyor*/
+    width: 100%;/*animasyonun nereye kadar gideceğini belirtiyor*/
+    filter: drop-shadow(0 0 25px var(--clr)) /* etrafının parlamasını sağlıyor*/
+}
